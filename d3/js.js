@@ -1,4 +1,4 @@
-function filter(p) {
+function onLoad(p) {
   // // import {legend} from "@d3/color-legend"
 
 // // set the dimensions and margins of the graph
@@ -135,8 +135,48 @@ const svg = d3.select("#vizDiv")
 d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv").then(function(data) {
 
   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-  const groups = Array.from(new Set(data.map(d => d.group)))
+  // const groups = Array.from(new Set(data.map(d => d.group)))
+  // const vars = Array.from(new Set(data.map(d => d.variable)))
+  // var xValues = new Array();
+  // var yValues = new Array();
+  // var zValues = new Array();
+  // var newData = new Array();
+  // for (var i=0; i<data.length; i++) {
+    // filter, 0 = all
+    // row = data[i];
+    // if (p==0) {
+    //     // console.log(row);
+        // xValues.push(row['group']);
+        // yValues.push(row['variable']);
+    //     // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
+        // zValues[i]=row['value'];
+        // newData.group = row['group'];
+        // newData.variable = row['variable'];
+    // }
+    // else{
+        // if ((row['group'] == p) || (row['variable'] == p)) {
+            // xValues.push(row['group']);
+            // yValues.push(row['variable']);
+            // zValues.push(row['value']);
+            // groups=''
+        // }
+    // }
+    // else if (row['group'] == p) {
+      // data.filter(function(d){ return d.group == p })
+    // }
+    // else{
+      // data.filter(function(d){ return d.group == p })
+      // console.log(data);
+    // }
+
+    // console.log(xValues, yValues, zValues);
+  // }
+  // newData.push(xValues, yValues, zValues)
+  // console.log(newData);
+  // filter where name is not like p
+  const groups = Array.from(new Set(data.filter(function(d){ return d.group != p }).map(d => d.group)))
   const vars = Array.from(new Set(data.map(d => d.variable)))
+  // console.log(groups, vars);
 
     // figure out the max and min values, to be used in the color scale
   // let tmpArray = [];
