@@ -50,35 +50,35 @@ const myColor = d3.scaleSequential().domain([45,100])
 
 
 //Read the data
+// TODO this should be from the database, soon tm
 d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.csv").then( function(data) {
-  console.log(data);
+  
 
   const value = d3.select("#my_dataviz")
     .append("p")
 
   const mouseover = function(event,d) {
-    let thisX = console.log(event.target.attributes[0].nodeValue);
-    let thisY = console.log(event.target.attributes[1].nodeValue);
+    // let thisX = event.target.attributes[0].nodeValue;
+    // let thisY = event.target.attributes[1].nodeValue;
     value
       //.style("margin", Math.round(thisX)+"px")
       .style("opacity", 1)
       //.append("text")
       .html(d.value)
-        
     //   .style("opacity", 1)
     // d3.select(this)
     //   .style("stroke", "black")
     //   .style("opacity", 1)
     //console.log(d.value);
   }
-  const mousemove = function(event,d) {
-    value
-      //.html(d.value)
-      //.style("left", (event.x)/2 + "px")
-      //.style("top", (event.y)/2 + "px")
-    console.log(d);
+  // const mousemove = function(event,d) {
+  //   value
+  //     //.html(d.value)
+  //     //.style("left", (event.x)/2 + "px")
+  //     //.style("top", (event.y)/2 + "px")
+  //   console.log(d);
       
-  }
+  // }
   const mouseleave = function(event,d) {
     value
       .style("opacity", 0)
