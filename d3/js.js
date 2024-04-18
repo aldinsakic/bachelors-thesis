@@ -1,3 +1,5 @@
+// import {legend} from "@d3/color-legend"
+
 // set the dimensions and margins of the graph
 const margin = {top: 30, right: 30, bottom: 30, left: 30},
   width = 600 - margin.left - margin.right,
@@ -48,7 +50,7 @@ svg.append("g")
 
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.csv").then( function(data) {
+d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv").then( function(data) {
   
 
   const value = d3.select("#my_dataviz")
@@ -96,9 +98,11 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.c
   const myColor = d3.scaleSequential().domain([minValue,maxValue]).interpolator(d3.interpolateViridis);
   
   //svg.selectAll()
+  // this is so borked, fix time 
   svg.selectAll()
   .data(data, function(d) {return d.group+':'+d.variable;})
   .enter()
+  // .scales({myColor})
   .append("rect")
     .attr("x", function(d) { return x(d.group)+1 })
     .attr("y", function(d) { return y(d.variable)+1 })
