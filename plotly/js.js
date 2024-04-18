@@ -1,5 +1,5 @@
-function onLoad() {
-    Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.csv", function(allData){
+function filter(p) {
+    Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function(allData){
 
         // console.log(allData);
 
@@ -16,15 +16,29 @@ function onLoad() {
         var xValues = new Array();
         var yValues = new Array();
         // var xValues = ["2013", "2015", "2017", "2019", "2020", "2021", "2022", "2023"];
+        var groups = ["2013", "2015", "2017", "2019", "2020", "2021", "2022", "2023"];
         // var yValues = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
+        var countries = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
         var zValues = new Array();
         for (var i=0; i<allData.length; i++) {
+            // filter, 0 = all
             row = allData[i];
-            // console.log(row);
-            xValues.push(row['group']);
-            yValues.push(row['variable']);
-            // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
-            zValues.push(row['value']);
+            if (p==0) {
+            //     // console.log(row);
+                xValues.push(row['variable']);
+                yValues.push(row['group']);
+            //     // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
+                zValues[i]=row['value'];
+            }
+            else{
+                if ((row['group'] == p) || (row['variable'] == p)) {
+                    xValues.push(row['variable']);
+                    yValues.push(row['group']);
+                    zValues.push(row['value']);
+                    // groups=''
+                }
+            }
+
             // console.log(xValues, yValues, zValues);
           }
           console.log(xValues, yValues, zValues);
@@ -50,8 +64,8 @@ function onLoad() {
         title: 'GEI in EU across all avaliable years, interactive heatmap',
         // automargin: false,
         autosize: true,
-        height: 500,
-        width: 500,
+        height: 900,
+        width: 900,
         automargin: false,
         // xref: 10000,
         // update_layout: {yaxis_scaleanchor:"x"},
@@ -65,22 +79,35 @@ function onLoad() {
             //     height: 10,
             //     width: 10,
             // },
-            xaxis: {
-                tickmode: 'linear',
-                constrain: 'domain',
-                //ticks: '',
-                //ticksuffix: ' ',
-                //width: 700,
-                //height: 700,
-                // autosize: true
-            },
-            yaxis: {
-            //ticks: '',
-            //ticksuffix: ' ',
+        xaxis: {
+            // tickformat: '%d %B (%a)<br>%Y'
+            // showgrid:true,
+            // ticks:"outside",
+            // tickson:"boundaries",
+            // ticklen:20
+            // tickmode : 'array',
+            // tickvals : [0,1,2,3,4,5,6,7],
+            // ticktext : groups,
+            // tickmode: 'auto',
+            // ticktext: groups,    
+            // tickvals: [1, 3, 5, 7, 9, 11],
+            // constrain: 'domain',
+            // ticks: '',
+            // ticksuffix: ' ',
             //width: 700,
             //height: 700,
             // autosize: true
-            }
+        },
+        yaxis: {
+        // tickmode : 'array',
+        // tickvals : [0,1,2,3,4,5,6,7],
+        // ticktext : groups,
+        //ticks: '',
+        //ticksuffix: ' ',
+        //width: 700,
+        //height: 700,
+        // autosize: true
+        }
         };
 
         // for ( var i = 0; i < yValues.length; i++ ) {
@@ -111,6 +138,6 @@ function onLoad() {
         // }
         // }
 
-        Plotly.newPlot('viz', data, layout);
+        Plotly.newPlot('viz', data, layout, {displayModeBar: false})
     })
 }
