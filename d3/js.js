@@ -7,7 +7,7 @@ function filter(p) {
 //   height = 600 - margin.top - margin.bottom;
 
 // // append the svg object to the body of the page
-// const svg = d3.select("#my_dataviz")
+// const svg = d3.select("#vizDiv")
 // .append("svg")
 //   .attr("width", width + margin.left + margin.right)
 //   .attr("height", height + margin.top + margin.bottom)
@@ -15,14 +15,14 @@ function filter(p) {
 //   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 //   // Labels of row and columns
-//   const myGroups = ["2023", "2022", "2021", "2020", "2019", "2017", "2015", "2013"];
-//   const myVars = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
+//   const groups = ["2023", "2022", "2021", "2020", "2019", "2017", "2015", "2013"];
+//   const vars = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
   
   
 //   // Build X scales and axis:
 //   const x = d3.scaleBand()
 //   .range([width, 0])
-//   .domain(myGroups)
+//   .domain(groups)
 //   //.padding(0.01);
 //   svg.append("g")
 //   .attr("transform", `translate(0, ${height})`)
@@ -31,7 +31,7 @@ function filter(p) {
 //   // Build y scales and axis:
 //   const y = d3.scaleBand()
 //   .range([height, 0])
-//   .domain(myVars)
+//   .domain(vars)
 //   //.padding(0.01);
 //   svg.append("g")
 //   .call(d3.axisLeft(y));
@@ -39,7 +39,7 @@ function filter(p) {
 
 // //svg.selectAll(".secondrow").data(data).enter().append("circle").attr("cx", function(d,i){return 30 + i*60}).attr("cy", 250).attr("r", 19).attr("fill", function(d){return myColor(d) })
 
-// // const tooltip = d3.select("#my_dataviz")
+// // const tooltip = d3.select("#vizDiv")
 // //   .append("div")
 // //   .style("opacity", 0)
 // //   .attr("class", "tooltip")
@@ -57,7 +57,7 @@ function filter(p) {
 //   //   .style("opacity", 0.8)
 // }
 
-// const value = d3.select("#my_dataviz")
+// const value = d3.select("#vizDiv")
 //   .append("p")
 
 // const mouseover = function(event,d) {
@@ -124,7 +124,7 @@ const margin = {top: 80, right: 25, bottom: 30, left: 50},
   height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-const svg = d3.select("#my_dataviz")
+const svg = d3.select("#vizDiv")
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -135,25 +135,25 @@ const svg = d3.select("#my_dataviz")
 d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv").then(function(data) {
 
   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-  const myGroups = Array.from(new Set(data.map(d => d.group)))
-  const myVars = Array.from(new Set(data.map(d => d.variable)))
+  const groups = Array.from(new Set(data.map(d => d.group)))
+  const vars = Array.from(new Set(data.map(d => d.variable)))
 
     // figure out the max and min values, to be used in the color scale
-  let tmpArray = [];
-  for (var i=0; i<data.length; i++) {
-    row = data[i];
-    tmpArray.push(row['value'])
-  }
-  const maxValue = Math.max.apply(null, tmpArray);
-  const minValue = Math.min.apply(null, tmpArray);
-  console.log(maxValue, minValue);
+  // let tmpArray = [];
+  // for (var i=0; i<data.length; i++) {
+  //   row = data[i];
+  //   tmpArray.push(row['value'])
+  // }
+  // const maxValue = Math.max.apply(null, tmpArray);
+  // const minValue = Math.min.apply(null, tmpArray);
+  // console.log(maxValue, minValue);
   // Build color scale
   //const myColor = d3.scaleSequential().domain([minValue,maxValue]).interpolator(d3.interpolateViridis);
 
   // Build X scales and axis:
   const x = d3.scaleBand()
     .range([ 0, width ])
-    .domain(myGroups)
+    .domain(groups)
     // .padding(0.05);
   svg.append("g")
     .style("font-size", 15)
@@ -164,7 +164,7 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
   // Build Y scales and axis:
   const y = d3.scaleBand()
     .range([ height, 0 ])
-    .domain(myVars)
+    .domain(vars)
     // .padding(0.05);
   svg.append("g")
     .style("font-size", 15)
@@ -179,15 +179,15 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
 
 
   // create a tooltip
-  const tooltip = d3.select("#my_dataviz")
+  const tooltip = d3.select("#vizDiv")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
     .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+    // .style("border", "solid")
+    // .style("border-width", "2px")
+    // .style("border-radius", "5px")
+    // .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
   const mouseover = function(event,d) {
@@ -222,7 +222,7 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
       .attr("width", x.bandwidth() )
       .attr("height", y.bandwidth() )
       .style("fill", function(d) { return myColor(d.value)} )
-      .style("stroke-width", 4)
+      // .style("stroke-width", 4)
       .style("stroke", "none")
       // .style("opacity", 0.8)
     .on("mouseover", mouseover)
