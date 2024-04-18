@@ -1,4 +1,4 @@
-function filter(p) {
+function onLoad(p) {
     Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function(allData){
 
         // console.log(allData);
@@ -20,28 +20,38 @@ function filter(p) {
         // var yValues = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
         var countries = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
         var zValues = new Array();
-        for (var i=0; i<allData.length; i++) {
-            // filter, 0 = all
-            row = allData[i];
-            if (p==0) {
-            //     // console.log(row);
-                xValues.push(row['group']);
-                yValues.push(row['variable']);
-            //     // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
-                zValues[i]=row['value'];
-            }
-            else{
-                if ((row['group'] == p) || (row['variable'] == p)) {
-                    xValues.push(row['group']);
-                    yValues.push(row['variable']);
-                    zValues.push(row['value']);
-                    // groups=''
-                }
-            }
+        // for (var i=0; i<allData.length; i++) {
+        //     // filter, 0 = all
+        //     row = allData[i];
+        //     if (p==0) {
+        //     //     // console.log(row);
+        //         xValues.push(row['group']);
+        //         yValues.push(row['variable']);
+        //     //     // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
+        //         zValues[i]=row['value'];
+        //     }
+        //     else{
+        //         if ((row['group'] == p) || (row['variable'] == p)) {
+        //             xValues.push(row['group']);
+        //             yValues.push(row['variable']);
+        //             zValues.push(row['value']);
+        //             // groups=''
+        //         }
+        //     }
 
-            // console.log(xValues, yValues, zValues);
-          }
-          console.log(xValues, yValues, zValues);
+        //     // console.log(xValues, yValues, zValues);
+        //   }
+        //   console.log(xValues, yValues, zValues);
+        // xValues = allData.filter(function(d){ return d.group != p }).map(d => d.group);
+        if (p!=0) {
+            xValues = allData.filter(function(d){ return p.indexOf(d.group) <= 0 }).map(d => d.group);
+        }
+        else{
+            xValues = allData.map(d => d.group);
+        }
+        yValues = allData.map(d => d.variable);
+        zValues = allData.map(d => d.value);
+        console.log(xValues, yValues, zValues);
 
         // var colorscaleValue = ['Viridis'];
 
