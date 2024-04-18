@@ -25,15 +25,15 @@ function filter(p) {
             row = allData[i];
             if (p==0) {
             //     // console.log(row);
-                xValues.push(row['variable']);
-                yValues.push(row['group']);
+                xValues.push(row['group']);
+                yValues.push(row['variable']);
             //     // zValues.push(Array.of(row['group'], row['variable'], row['value'],));
                 zValues[i]=row['value'];
             }
             else{
                 if ((row['group'] == p) || (row['variable'] == p)) {
-                    xValues.push(row['variable']);
-                    yValues.push(row['group']);
+                    xValues.push(row['group']);
+                    yValues.push(row['variable']);
                     zValues.push(row['value']);
                     // groups=''
                 }
@@ -64,8 +64,8 @@ function filter(p) {
         title: 'GEI in EU across all avaliable years, interactive heatmap',
         // automargin: false,
         autosize: true,
-        height: 900,
-        width: 900,
+        height: 800,
+        width: 800,
         automargin: false,
         // xref: 10000,
         // update_layout: {yaxis_scaleanchor:"x"},
@@ -88,6 +88,7 @@ function filter(p) {
             // tickmode : 'array',
             // tickvals : [0,1,2,3,4,5,6,7],
             // ticktext : groups,
+            // range: groups,
             // tickmode: 'auto',
             // ticktext: groups,    
             // tickvals: [1, 3, 5, 7, 9, 11],
