@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margin = {top: 30, right: 30, bottom: 30, left: 30},
-  width = 400 - margin.left - margin.right,
-  height = 700 - margin.top - margin.bottom;
+  width = 600 - margin.left - margin.right,
+  height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#my_dataviz")
@@ -18,24 +18,22 @@ const svg = d3.select("#my_dataviz")
   
   // Build X scales and axis:
   const x = d3.scaleBand()
-  .range([ 0, width ])
+  .range([width, 0])
   .domain(myGroups)
-  .padding(0.01);
+  //.padding(0.01);
   svg.append("g")
   .attr("transform", `translate(0, ${height})`)
   .call(d3.axisBottom(x))
   
 // Build X scales and axis:
 const y = d3.scaleBand()
-  .range([ height, 0 ])
+  .range([height, 0])
   .domain(myVars)
-  .padding(0.01);
+  //.padding(0.01);
 svg.append("g")
   .call(d3.axisLeft(y));
 
-// Build color scale
-const myColor = d3.scaleSequential().domain([45,100])
-  .interpolator(d3.interpolateViridis);
+
 //svg.selectAll(".secondrow").data(data).enter().append("circle").attr("cx", function(d,i){return 30 + i*60}).attr("cy", 250).attr("r", 19).attr("fill", function(d){return myColor(d) })
 
 // const tooltip = d3.select("#my_dataviz")
@@ -50,7 +48,6 @@ const myColor = d3.scaleSequential().domain([45,100])
 
 
 //Read the data
-// TODO this should be from the database, soon tm
 d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.csv").then( function(data) {
   
 
@@ -86,8 +83,18 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.c
     //   .style("stroke", "none")
     //   .style("opacity", 0.8)
   }
-
-
+  
+  // figure out the max and min values, to be used in the color scale
+  let tmpArray = [];
+  for (var i=0; i<data.length; i++) {
+    row = data[i];
+    tmpArray.push(row['value'])
+  }
+  const maxValue = Math.max.apply(null, tmpArray);
+  const minValue = Math.min.apply(null, tmpArray);
+  // Build color scale
+  const myColor = d3.scaleSequential().domain([minValue,maxValue]).interpolator(d3.interpolateViridis);
+  
   //svg.selectAll()
   svg.selectAll()
   .data(data, function(d) {return d.group+':'+d.variable;})
@@ -95,12 +102,12 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/GEI.c
   .append("rect")
     .attr("x", function(d) { return x(d.group)+1 })
     .attr("y", function(d) { return y(d.variable)+1 })
-    .attr("width", x.bandwidth()-2 )
-    .attr("height", y.bandwidth()-2 )
+    .attr("width", x.bandwidth() )
+    .attr("height", y.bandwidth() )
     .style("fill", function(d) { return myColor(d.value)} )
-    .style("stroke-width", 1)
-    .style("stroke", "none")
-    .style("opacity", 1)
+    //.style("stroke-width", 1)
+    //.style("stroke", "none")
+    //.style("opacity", 1)
     .on("mouseover", mouseover)
     //.on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
