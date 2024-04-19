@@ -1,4 +1,6 @@
 function onLoad(p) {
+    // get the time for start of filtration.
+    localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime")+', '+Date.now ())
     Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function (allData) {
         var xValues = Array.from(allData.filter(function (d) { return p.indexOf(d.group) >= 0 }).map(d => d.group));
         var yValues = Array.from(allData.map(d => d.variable));
@@ -22,4 +24,6 @@ function onLoad(p) {
         };
         Plotly.newPlot('viz', data, layout, { displayModeBar: false })
     })
+    // get the time for end of filtration.
+    localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime")+', '+Date.now ())
 }

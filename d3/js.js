@@ -1,4 +1,6 @@
 function onLoad(p) {
+  // get the time for start of filtration.
+  localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime") + ', ' + Date.now())
   //clear for filtering
   document.getElementById('vizDiv').innerHTML = '';
 
@@ -93,4 +95,7 @@ function onLoad(p) {
     .attr("y", -50)
     .style("font-size", "14px")
     .text("GEI in EU across all avaliable years, interactive heatmap");
+
+  // get the time for end of filtration.
+  localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
 }
