@@ -44,14 +44,14 @@ function onLoad(p) {
         //   console.log(xValues, yValues, zValues);
         // xValues = allData.filter(function(d){ return d.group != p }).map(d => d.group);
         // if (p!=0) {
-        var xValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) > 0 } ).map(d => d.group));
+        var xValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) >= 0 } ).map(d => d.group));
         // }
         // else{
             // xValues = allData.map(d => d.group);
         // }
         var yValues = Array.from(allData.map(d => d.variable));
         // var zValues = Array.from(allData.map(d => d.value));
-        var zValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) > 0 } ).map(d => d.value));
+        var zValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) >= 0 } ).map(d => d.value));
 
         
         console.log(xValues, yValues, zValues);

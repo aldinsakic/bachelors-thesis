@@ -177,7 +177,7 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
   // console.log(newData);
   // if (p != 0) {
     // var groups = Array.from(new Set(data.filter(function(d){ return d.group == p }).map(d => d.group)));
-    var groups = Array.from(new Set(data.filter(function(d){ return p.indexOf(d.group) > 0 }).map(d => d.group)));
+    var groups = Array.from(new Set(data.filter(function(d){ return p.indexOf(d.group) >= 0 }).map(d => d.group)));
   // }
   // else {
     // var groups = Array.from(new Set(data.map(d => d.group)));
@@ -250,8 +250,9 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
   const mousemove = function(event,d) {
     tooltip
       .html("Value: " + d.value + ", Date: " + d.variable + ", Country: " + d.group)
-      .style("left", (event.x)/2 + "px")
-      .style("top", (event.y)/2 + "px")
+      // TODO doesnt move with the mouse, idk why
+      // .style("left", (event.x)/2 + "px")
+      // .style("top", (event.y)/2 + "px")
   }
   const mouseleave = function(event,d) {
     tooltip
@@ -263,7 +264,7 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
 
   // add the squares
   svg.selectAll()
-    .data(data.filter(function(d){ return p.indexOf(d.group) > 0 }), function(d) {return d.group+':'+d.variable;})
+    .data(data.filter(function(d){ return p.indexOf(d.group) >= 0 }), function(d) {return d.group+':'+d.variable;})
     .join("rect")
       .attr("x", function(d) { return x(d.group) })
       .attr("y", function(d) { return y(d.variable) })
