@@ -1,6 +1,6 @@
 function onLoad(p) {
     Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function(allData){
-
+        console.log(allData);
         // console.log(allData);
 
         // var xValues = ['A', 'B', 'C', 'D', 'E'];
@@ -13,13 +13,13 @@ function onLoad(p) {
         // [0.75, 0.75, 0.75, 0.75, 0.75],
         // [0.00, 0.00, 0.00, 0.75, 0.00]
         // ];
-        var xValues = new Array();
-        var yValues = new Array();
+        //var xValues = new Array();
+        // var yValues = new Array();
         // var xValues = ["2013", "2015", "2017", "2019", "2020", "2021", "2022", "2023"];
-        var groups = ["2013", "2015", "2017", "2019", "2020", "2021", "2022", "2023"];
+        // var groups = ["2013", "2015", "2017", "2019", "2020", "2021", "2022", "2023"];
         // var yValues = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
-        var countries = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
-        var zValues = new Array();
+        // var countries = ["BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE"];
+        // var zValues = new Array();
         // for (var i=0; i<allData.length; i++) {
         //     // filter, 0 = all
         //     row = allData[i];
@@ -43,14 +43,17 @@ function onLoad(p) {
         //   }
         //   console.log(xValues, yValues, zValues);
         // xValues = allData.filter(function(d){ return d.group != p }).map(d => d.group);
-        if (p!=0) {
-            xValues = allData.filter(function(d){ return p.indexOf(d.group) <= 0 }).map(d => d.group);
-        }
-        else{
-            xValues = allData.map(d => d.group);
-        }
-        yValues = allData.map(d => d.variable);
-        zValues = allData.map(d => d.value);
+        // if (p!=0) {
+        var xValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) > 0 } ).map(d => d.group));
+        // }
+        // else{
+            // xValues = allData.map(d => d.group);
+        // }
+        var yValues = Array.from(allData.map(d => d.variable));
+        // var zValues = Array.from(allData.map(d => d.value));
+        var zValues = Array.from(allData.filter(function(d){ return p.indexOf(d.group) > 0 } ).map(d => d.value));
+
+        
         console.log(xValues, yValues, zValues);
 
         // var colorscaleValue = ['Viridis'];
@@ -61,7 +64,7 @@ function onLoad(p) {
             z: zValues,
             type: 'heatmap',
             colorscale: 'Viridis',
-            showscale: true,
+            showscale: false,
             // transforms: [{
             //     type: 'filter',
             //     target: 'yValues',

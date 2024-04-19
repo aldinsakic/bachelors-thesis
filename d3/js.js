@@ -175,15 +175,17 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
   // }
   // newData.push(xValues, yValues, zValues)
   // console.log(newData);
-  if (p != 0) {
-    var groups = data.filter(function (d) { return p.indexOf(d.group) <= 0 }).map(d => d.group);
-  }
-  else {
-    var groups = Array.from(new Set(data.map(d => d.group)));
-  }
+  // if (p != 0) {
+    // var groups = Array.from(new Set(data.filter(function(d){ return d.group == p }).map(d => d.group)));
+    var groups = Array.from(new Set(data.filter(function(d){ return p.indexOf(d.group) > 0 }).map(d => d.group)));
+  // }
+  // else {
+    // var groups = Array.from(new Set(data.map(d => d.group)));
+  // }
   // filter where name is not like p
   // const groups = Array.from(new Set(data.filter(function(d){ return d.group != p }).map(d => d.group)))
-  const vars = Array.from(new Set(data.map(d => d.variable)))
+  var vars = Array.from(new Set(data.map(d => d.variable)))
+  console.log(groups, vars, data.value);
   // console.log(groups, vars);
 
     // figure out the max and min values, to be used in the color scale
@@ -261,7 +263,7 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
 
   // add the squares
   svg.selectAll()
-    .data(data, function(d) {return d.group+':'+d.variable;})
+    .data(data.filter(function(d){ return p.indexOf(d.group) > 0 }), function(d) {return d.group+':'+d.variable;})
     .join("rect")
       .attr("x", function(d) { return x(d.group) })
       .attr("y", function(d) { return y(d.variable) })
