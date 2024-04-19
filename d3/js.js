@@ -1,4 +1,6 @@
 function onLoad(p) {
+  //clear for filtering
+  document.getElementById('vizDiv').innerHTML = '';
   // // import {legend} from "@d3/color-legend"
 
 // // set the dimensions and margins of the graph
@@ -173,8 +175,14 @@ d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/stand
   // }
   // newData.push(xValues, yValues, zValues)
   // console.log(newData);
+  if (p != 0) {
+    var groups = data.filter(function (d) { return p.indexOf(d.group) <= 0 }).map(d => d.group);
+  }
+  else {
+    var groups = Array.from(new Set(data.map(d => d.group)));
+  }
   // filter where name is not like p
-  const groups = Array.from(new Set(data.filter(function(d){ return d.group != p }).map(d => d.group)))
+  // const groups = Array.from(new Set(data.filter(function(d){ return d.group != p }).map(d => d.group)))
   const vars = Array.from(new Set(data.map(d => d.variable)))
   // console.log(groups, vars);
 
