@@ -15,7 +15,7 @@ function onLoad(p) {
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  //Read the data
+  // read the data
   d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv").then(function (data) {
 
     // filter on p
@@ -26,7 +26,6 @@ function onLoad(p) {
     const x = d3.scaleBand()
       .range([0, width])
       .domain(groups)
-    // .padding(0.05);
     svg.append("g")
       .style("font-size", 15)
       .attr("transform", `translate(0, ${height})`)
@@ -37,14 +36,13 @@ function onLoad(p) {
     const y = d3.scaleBand()
       .range([height, 0])
       .domain(vars)
-    // .padding(0.05);
     svg.append("g")
       .style("font-size", 15)
       .call(d3.axisLeft(y).tickSize(0))
       .select(".domain").remove()
 
     // Build color scale
-    const myColor = d3.scaleSequential()
+    const colorScale = d3.scaleSequential()
       .interpolator(d3.interpolateViridis)
       // TODO hard coded min and max values, change later
       .domain([48.6, 83.9])
@@ -55,7 +53,6 @@ function onLoad(p) {
       .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
-      .style("background-color", "white")
 
     // Three function that change the tooltip when user hover / move / leave a cell
     const mouseover = function (event, d) {
@@ -66,7 +63,7 @@ function onLoad(p) {
     }
     const mousemove = function (event, d) {
       tooltip
-        .html("Value: " + d.value + ", Date: " + d.variable + ", Country: " + d.group)
+        .html("x: " + d.group + ", y: " + d.variable + ", z: " + d.value)
       // TODO doesnt move with the mouse, idk why
       // .style("left", (event.x)/2 + "px")
       // .style("top", (event.y)/2 + "px")
@@ -74,7 +71,6 @@ function onLoad(p) {
     const mouseleave = function (event, d) {
       tooltip
         .style("opacity", 0)
-      d3.select(this)
     }
 
     // add the squares
@@ -85,8 +81,7 @@ function onLoad(p) {
       .attr("y", function (d) { return y(d.variable) })
       .attr("width", x.bandwidth())
       .attr("height", y.bandwidth())
-      .style("fill", function (d) { return myColor(d.value) })
-      .style("stroke", "none")
+      .style("fill", function (d) { return colorScale(d.value) })
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
@@ -94,9 +89,8 @@ function onLoad(p) {
 
   // Add title to graph
   svg.append("text")
-    .attr("x", 0)
+    .attr("x", 100)
     .attr("y", -50)
-    .attr("text-anchor", "left")
     .style("font-size", "14px")
     .text("GEI in EU across all avaliable years, interactive heatmap");
 }
