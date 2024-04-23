@@ -1,7 +1,7 @@
 # 200 for loop
-for i in $(seq 1 200);
+for i in $(seq 1 200)
 do
-    firefox d3-server.local;
-    sleep 10;
-    kill `pgrep "firefox"`;
+    firefox -no-remote d3-server.local &
+    sleep 10
+    pkill -f firefox
 done
