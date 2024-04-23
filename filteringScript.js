@@ -13,4 +13,5 @@ window.addEventListener("load", (event) => {
     onLoad(['BE', 'DK']);
     onLoad(['ES', 'CZ', 'EL','ES','FR','HR','IT','CY','LV','LT','LU','EE']);
     onLoad(['FI', 'SE', 'DK']);
+    window.close();
   });
