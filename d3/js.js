@@ -96,6 +96,9 @@ function onLoad(p) {
     .style("font-size", "14px")
     .text("GEI in EU across all avaliable years, interactive heatmap");
 
-  // get the time for end of filtration.
-  localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
-}
+  }
+// get the time for end of filtration.
+d3.select(window).on("load", () => {
+  console.log("loaded");
+  localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now());
+});
