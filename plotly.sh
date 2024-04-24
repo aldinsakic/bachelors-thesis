@@ -4,4 +4,5 @@ do
     firefox -no-remote plotly-server.local &
     sleep 20
     pkill -f firefox
+    echo $i
 done
