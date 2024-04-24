@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- initial time -->
-    <script>localStorage.setItem("initialTime", Date.now ())</script>
+    <script>localStorage.setItem("initialTime", localStorage.getItem("initialTime") + ', ' + Date.now())</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>plotly</title>
     <script src='https://cdn.plot.ly/plotly-1.58.5.min.js'></script>
     <script src="js.js"></script>
 </head>
-<body onload="onLoad(['BE','BG','CZ','DK','DE','EE','IE','EL','ES','FR','HR','IT','CY','LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE'])">
+
+<body
+    onload="onLoad(['BE','BG','CZ','DK','DE','EE','IE','EL','ES','FR','HR','IT','CY','LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE'])">
     <div id="viz"></div>
     <!-- after all is read time -->
-    <script>localStorage.setItem("endTime", Date.now ())</script>
+    <script>localStorage.setItem("endTime", localStorage.getItem("endTime") + ', ' + Date.now())</script>
 </body>
+
 </html>
