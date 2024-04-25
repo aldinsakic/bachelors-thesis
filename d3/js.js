@@ -109,6 +109,9 @@ function onLoad(p) {
                 onLoad(filters[i]);
                 i++;
               }
+              else {
+                window.close();
+              }
             });
           });
         });
