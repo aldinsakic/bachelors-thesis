@@ -110,7 +110,6 @@ function onLoad(p) {
                 i++;
               }
               else {
-                alert("done");
                 window.close();
               }
             });
