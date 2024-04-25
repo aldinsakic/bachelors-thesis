@@ -1,3 +1,5 @@
+var i = 0;
+var filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL','ES','FR','HR','IT','CY','LV','LT','LU','EE'], ['FI', 'SE', 'DK']];
 function onLoad(p) {
     // get the time for start of filtration.
     localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime")+', '+Date.now ())
@@ -23,11 +25,23 @@ function onLoad(p) {
                 showscale: false,
             }];
 
-        Plotly.newPlot('viz', data, layout, { displayModeBar: false });
-
-        // on afterplot, when loaded, log end time 
-        myPlot.on('plotly_afterplot', function () {
-            localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
+        Plotly.newPlot('viz', data, layout, { displayModeBar: false }).then(function () {
+            // 5 frame buffer to confirm the visualisation is visible before measuring end of time.
+            window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () {
+                    window.requestAnimationFrame(function () {
+                        window.requestAnimationFrame(function () {
+                            window.requestAnimationFrame(function () {
+                                localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
+                                if (i<5) {
+                                    onLoad(filters[i])
+                                }
+                            });
+                        });
+                    });
+                });
+            });
         });
     })
+    i++;
 }

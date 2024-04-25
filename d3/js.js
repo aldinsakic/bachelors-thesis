@@ -1,3 +1,5 @@
+var i = 0;
+var filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL', 'ES', 'FR', 'HR', 'IT', 'CY', 'LV', 'LT', 'LU', 'EE'], ['FI', 'SE', 'DK']];
 function onLoad(p) {
   // get the time for start of filtration.
   localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime") + ', ' + Date.now())
@@ -87,17 +89,30 @@ function onLoad(p) {
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
+
+    // Add title to graph
+    svg.append("text")
+      .attr("x", 100)
+      .attr("y", -50)
+      .style("font-size", "14px")
+      .text("GEI in EU across all avaliable years, interactive heatmap");
+
+
+    // similar idea as for plotly, wait 5 frames before measuring end.
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+              localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
+              if (i < 5) {
+                onLoad(filters[i]);
+                i++;
+              }
+            });
+          });
+        });
+      });
+    });
   })
-
-  // Add title to graph
-  svg.append("text")
-    .attr("x", 100)
-    .attr("y", -50)
-    .style("font-size", "14px")
-    .text("GEI in EU across all avaliable years, interactive heatmap");
-
-  }
-// get the time for end of filtration.
-d3.select(window).on("load", () => {
-  localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now());
-});
+}
