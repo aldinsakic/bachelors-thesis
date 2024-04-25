@@ -2,6 +2,6 @@
 for i in $(seq 1 100)
 do
     firefox 192.168.1.229 &
-    sleep 30
+    sleep 15
     echo $i
 done
