@@ -65,9 +65,9 @@ plt.bar(barsOrder, barsData, color=colors, edgecolor='black', width=barWidth,
 # Put a tick on the x-axis undex each bar and label it with column name
 # plt.xticks(range(len(df.columns)), df.columns)
 
-plt.ylabel('Load delta in ms')
+plt.ylabel('Filter time delta in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(2), ['plotly', 'D3'])
-plt.title('Load-delta Means Comparison')
+plt.title('Filter time delta Means Comparison')
 plt.grid(False)
 plt.show()
