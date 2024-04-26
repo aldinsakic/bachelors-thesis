@@ -107,7 +107,6 @@ function onLoad(p) {
               localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
               if (i < 5) {
                 onLoad(filters[i]);
-                i++;
               }
               else {
                 window.close();
@@ -118,4 +117,5 @@ function onLoad(p) {
       });
     });
   })
+  i++;
 }
