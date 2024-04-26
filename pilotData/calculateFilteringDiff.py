@@ -1,9 +1,13 @@
-import scipy.stats as stats
-import numpy as np
-import statsmodels.stats.multicomp as multi
 import pandas as pd
 
-d3filterStart = "pilotData/D3filterStartTime.txt"
-d3filterStart_df = pd.read_csv(d3filterStart, header=None, names=['Epoch'])
+filterStart = "pilotData/D3filterStartTime.txt"
+filterStart_df = pd.read_csv(filterStart, header=None, names=['epoch'])
+filterEnd = "pilotData/D3filterEndTime.txt"
+filterEnd_df = pd.read_csv(filterEnd, header=None, names=['epoch'])
 
-print(d3filterStart_df)
+delta = filterEnd_df['epoch'] - filterStart_df['epoch']
+for i in delta:
+    print(i)
+
+#bash this manually
+#python3 pilotData/calculateFilteringDiff.py > file.txt
