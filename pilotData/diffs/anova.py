@@ -25,7 +25,7 @@ def exampleAnova():
     plotly = "plotlyLoadDelta.txt"
     plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-    d3_data = "D3FilterDelta.txt"
+    d3_data = "D3LoadDelta.txt"
     d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
     # Run Anova on data groups
     if (anova(plotly_df['delta'], d3_df['delta'])):

@@ -16,7 +16,7 @@ def mean_confidence_interval(data, confidence=0.95):
 plotly = "plotlyLoadDelta.txt"
 plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-d3_data = "D3FilterDelta.txt"
+d3_data = "D3LoadDelta.txt"
 d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
 print("CI plotly delta: ", mean_confidence_interval(plotly_df['delta']))
