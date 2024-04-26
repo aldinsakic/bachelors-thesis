@@ -1,11 +1,11 @@
 import pandas as pd
 
-filterStart = "PlotlyfilterStartTime.txt"
-filterStart_df = pd.read_csv(filterStart, header=None, names=['epoch'])
-filterEnd = "PlotlyfilterEndTime.txt"
-filterEnd_df = pd.read_csv(filterEnd, header=None, names=['epoch'])
+start = "D3initialTime.txt"
+start_df = pd.read_csv(start, header=None, names=['epoch'])
+end = "D3endTime.txt"
+end_df = pd.read_csv(end, header=None, names=['epoch'])
 
-delta = filterEnd_df['epoch'] - filterStart_df['epoch']
+delta = end_df['epoch'] - start_df['epoch']
 for i in delta:
     print(i)
 
