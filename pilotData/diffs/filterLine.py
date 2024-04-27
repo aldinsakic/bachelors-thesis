@@ -49,8 +49,7 @@ for filter in filters:
     plt.xlim(xmin=0, xmax=99)
     # -1 since we start from 0
     # plt.xlim(xmax=len(PlY[0::5]))
-
-    # set the x ticks to the searchwords
+    
     plt.xticks(range(0,100,5))
     # range from 0 to the maximum value of y, with ticks of 50.
     plt.yticks(range(0, max(PlY), 50))

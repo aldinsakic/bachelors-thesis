@@ -21,18 +21,16 @@ print(d3Df['epoch'].mean())
 print(d3Df['epoch'].std())
 
 # set the size of the graph, since the x ticks would be squished otherwise
-plt.figure(figsize=(18, 6), dpi=80)
+# plt.figure(figsize=(18, 6), dpi=80)
 
 plt.plot(x, PlY)
 plt.plot(x, d3Y)
 
 plt.ylim(ymin=0)
-plt.xlim(xmin=0)
-# -1 since we start from 0
-plt.xlim(xmax=len(PlY))
+plt.xlim(xmin=0, xmax=99)
 
-# set the x ticks to the searchwords
-plt.xticks(range(0,100,10))
+
+plt.xticks(range(0,100,5))
 # range from 0 to the maximum value of y, with ticks of 50.
 plt.yticks(range(0, max(PlY), 50))
 
