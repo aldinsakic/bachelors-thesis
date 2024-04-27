@@ -27,11 +27,30 @@ def exampleAnova():
 
     d3_data = "D3LoadDelta.txt"
     d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
+
+    # plotlyFilter1 = plotly_df.iloc[0::5]
+    # plotlyFilter2 = plotly_df.iloc[1::5]
+    # plotlyFilter3 = plotly_df.iloc[2::5]
+    # plotlyFilter4 = plotly_df.iloc[3::5]
+    # plotlyFilter5 = plotly_df.iloc[4::5]
+    # D3Filter1 = d3_df.iloc[0::5]
+    # D3Filter2 = d3_df.iloc[1::5]
+    # D3Filter3 = d3_df.iloc[2::5]
+    # D3Filter4 = d3_df.iloc[3::5]
+    # D3Filter5 = d3_df.iloc[4::5]
     # Run Anova on data groups
-    if (anova(plotly_df['delta'], d3_df['delta'])):
-        print("The means are different")
-    else:
-        print("No differences in means")
+    # if (anova(plotly_df['delta'], d3_df['delta'])):
+    #     print("The means are different")
+    # else:
+    #     print("No differences in means")
+    for i in range(5):
+        print(i)
+        plotly_df.iloc[i::5]
+        d3_df.iloc[i::5]
+        if (anova(plotly_df.iloc[i::5]['delta'], d3_df.iloc[i::5]['delta'])):
+            print("The means are different")
+        else:
+            print("No differences in means")
 
 
 exampleAnova()
