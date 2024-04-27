@@ -29,7 +29,7 @@ plt.plot(x, d3Y)
 plt.ylim(ymin=0)
 plt.xlim(xmin=0)
 # -1 since we start from 0
-plt.xlim(xmax=len(PlY) - 1)
+plt.xlim(xmax=len(PlY))
 
 # set the x ticks to the searchwords
 plt.xticks(range(0,100,10))
@@ -37,8 +37,9 @@ plt.xticks(range(0,100,10))
 plt.yticks(range(0, max(PlY), 50))
 
 plt.xlabel('Run')
-plt.ylabel('Time')
+plt.ylabel('Load time in ms')
 # plt.title('load-time for ' + str(len(df)) + ' runs')
 plt.grid(False)
 plt.legend(['Plotly', 'D3'])
+plt.savefig('../Graphs/loadTimeDeltaLine.png', bbox_inches='tight')
 plt.show()
