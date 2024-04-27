@@ -156,5 +156,6 @@ plt.xticks(range(5), ['BE', 'DE','BE & DK', 'ES, CZ, EL, ES, FR, HR, IT, CY, LV,
 plt.title('Individual Filters Time Delta Means Comparison')
 plt.legend(["Plotly", "D3"]) 
 plt.grid(False)
+# bbox tight removes white margin on the image
 plt.savefig('../Graphs/IndividualFilterLoadTimeDelta.png', bbox_inches='tight')
 # plt.show()
