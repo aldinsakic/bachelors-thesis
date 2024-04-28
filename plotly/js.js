@@ -5,7 +5,7 @@ function onLoad(p) {
     localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime")+', '+Date.now ())
     Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function (allData) {
         var myPlot = document.getElementById('viz'),
-            d3 = Plotly.d3,
+            // d3 = Plotly.d3,
             layout = {
                 title: 'GEI in EU across all avaliable years, interactive heatmap',
                 autosize: true,
