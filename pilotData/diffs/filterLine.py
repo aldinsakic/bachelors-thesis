@@ -21,7 +21,7 @@ d3Y = d3Df['epoch'].tolist()
 # print(d3Df['epoch'].std())
 
 # set the size of the graph, since the x ticks would be squished otherwise
-# plt.figure(figsize=(9, 6), dpi=80)
+# plt.figure(figsize=(4, 4), dpi=80)
 
 # plt.plot(x, PlY)
 # plt.plot(x, d3Y)
@@ -45,7 +45,8 @@ for filter in filters:
     plt.plot(x, PlY[filters.index(filter)::5], 'orange')
     plt.plot(x, d3Y[filters.index(filter)::5], 'purple')
 
-    plt.ylim(ymin=0)
+    # + 100 to make room for the legend
+    plt.ylim(ymin=0, ymax=max(PlY)+100)
     plt.xlim(xmin=0, xmax=99)
     # -1 since we start from 0
     # plt.xlim(xmax=len(PlY[0::5]))
@@ -55,11 +56,12 @@ for filter in filters:
     plt.yticks(range(0, max(PlY), 50))
 
     # join the array so its string, not list 
+    # plt.figure(figsize=(8, 8), dpi=80)
     plt.title('Load time for filter '+(','.join(filter)))
     plt.xlabel('Run')
     plt.ylabel('Load time in ms')
     # plt.title('load-time for ' + str(len(df)) + ' runs')
     plt.grid(False)
     plt.legend(['Plotly', 'D3'])
-    plt.savefig('../Graphs/filterLine'+str(filters.index(filter))+'.png')
+    plt.savefig('../Graphs/filterLine'+str(filters.index(filter))+'.png', bbox_inches='tight')
     plt.show()
