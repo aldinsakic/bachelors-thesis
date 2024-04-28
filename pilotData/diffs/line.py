@@ -23,8 +23,8 @@ print(d3Df['epoch'].std())
 # set the size of the graph, since the x ticks would be squished otherwise
 # plt.figure(figsize=(18, 6), dpi=80)
 
-plt.plot(x, PlY)
-plt.plot(x, d3Y)
+plt.plot(x, PlY, 'orange')
+plt.plot(x, d3Y, 'purple')
 
 plt.ylim(ymin=0)
 plt.xlim(xmin=0, xmax=99)

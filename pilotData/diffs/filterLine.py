@@ -42,14 +42,14 @@ filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL', 'ES', 'FR', 'HR', 'I
 for filter in filters:
 
     # whatever filter we are on i.e 1,2,3 etc. start counting every 5th from that in PlY and d3Y.
-    plt.plot(x, PlY[filters.index(filter)::5])
-    plt.plot(x, d3Y[filters.index(filter)::5])
+    plt.plot(x, PlY[filters.index(filter)::5], 'orange')
+    plt.plot(x, d3Y[filters.index(filter)::5], 'purple')
 
     plt.ylim(ymin=0)
     plt.xlim(xmin=0, xmax=99)
     # -1 since we start from 0
     # plt.xlim(xmax=len(PlY[0::5]))
-    
+
     plt.xticks(range(0,100,5))
     # range from 0 to the maximum value of y, with ticks of 50.
     plt.yticks(range(0, max(PlY), 50))
