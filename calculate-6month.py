@@ -56,13 +56,17 @@ for i in df.index:
     orgDateYear = orgDate[-4:]
     # print(orgDateYear)
     newDate = '1-6-' + orgDateYear
-    print(newDate)
+    # print(newDate)
 
     currentValue = df['value'][i]
     print(currentValue)
 
-    nextValue = df['value'][i]
-    print(nextValue)
+    # not sure why -1 is needed, without it it seems to go out of bounds on df
+    # whatever tho, only last value doesnt exist but thats fine, ill manually calculate that one
+    # TODO add to if, make sure its beneath 2023, lest i go over and start grabbing values from other countries
+    if i < len(df['value'])-1:
+        nextValue = df['value'][i+1]
+        print(nextValue)
 
     # in between lines, so i + 0.5
-    #df.loc[i+.5] = ['Jane', 25, 'Madrid']
+    #df.loc[i+.5] = [newDate, df['group'][i], idk]
