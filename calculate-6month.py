@@ -44,6 +44,25 @@ import numpy as np
 # add the new values on the end, doenst matter. when comparing; only compare if its a whole year. 
 # then for the quarters its only compare if the first instance is a whole and the next is a half. or two whole if there is no half.
 
-df = pd.read_csv("modifiedheader.csv", sep=",", header=None, names=['year', 'code', 'value'])
-for data in df:
-    print(df[data])
+# header 0 instead of None to delete the first row and assign names instead 
+# https://stackoverflow.com/questions/51759122/difference-between-header-none-and-header-0-in-pandas
+df = pd.read_csv("standardDateGEI.csv", sep=",", header=0, names=['group', 'variable', 'value'])
+
+for i in df.index:
+    print(df['variable'][i], df['value'][i])
+    orgDate = df['variable'][i]
+    # print(orgDate)
+    # slice so only the year remains, 1-1-2013 -> 2013
+    orgDateYear = orgDate[-4:]
+    # print(orgDateYear)
+    newDate = '1-6-' + orgDateYear
+    print(newDate)
+
+    currentValue = df['value'][i]
+    print(currentValue)
+
+    nextValue = df['value'][i]
+    print(nextValue)
+
+    # in between lines, so i + 0.5
+    #df.loc[i+.5] = ['Jane', 25, 'Madrid']
