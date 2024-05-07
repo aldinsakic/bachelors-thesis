@@ -48,28 +48,74 @@ import numpy as np
 # https://stackoverflow.com/questions/51759122/difference-between-header-none-and-header-0-in-pandas
 df = pd.read_csv("standardDateGEI.csv", sep=",", header=0, names=['group', 'variable', 'value'])
 
+# to hold the new Dataframe rows to be added to the dataframe
+newRows = []
 for i in df.index:
-    # print(df['variable'][i], df['value'][i])
-    orgDate = df['variable'][i]
-    # print(orgDate)
-    # slice so only the year remains, 1-1-2013 -> 2013
-    orgDateYear = orgDate[-4:]
-    # print(orgDateYear)
-    newDate = '1-6-' + orgDateYear
-    # print(newDate)
-
-    currentValue = df['value'][i]
-    # print(currentValue)
-
     # not sure why -1 is needed, without it it seems to go out of bounds on df
     # whatever tho, only last value doesnt exist but thats fine, ill manually calculate that one
     # TODO add to if, make sure its beneath 2023, lest i go over and start grabbing values from other countries
     if (i < len(df['value'])-1) and (df['group'][i]==df['group'][i+1]):
-        nextValue = df['value'][i+1]
-        print(df['variable'][i])
+        
+        # print(df['variable'][i], df['value'][i])
+        orgDate = df['variable'][i]
+        # print(orgDate)
+        # slice so only the year remains, 1-1-2013 -> 2013
+        orgDateYear = orgDate[-4:]
+        # print(orgDateYear)
+        newDate = '1-6-' + orgDateYear
+        # print(newDate)
 
-        # works well, did manual comparison with the Plotly heatmap implementation
-        print(currentValue, nextValue, df['group'][i], df['group'][i+1])
+        currentValue = df['value'][i]
+        currentGroup = df['group'][i]
+        # print(currentValue)
+
+        nextValue = df['value'][i+1]
+        # print(df['variable'][i])
+
+        # seems to work well, did manual comparison with the Plotly heatmap implementation
+        # print(currentValue, nextValue, df['group'][i], df['group'][i+1])
+
+        # close enough
+        middleValue = currentValue+((nextValue-currentValue)/2)
+        # print(round(middleValue,1))
+
+        print(newDate, df['group'][i], round(middleValue,1))
+        # df.loc[i+0.5] = [newDate, df['group'][i], round(middleValue,1)]
+
+        # https://stackoverflow.com/questions/15888648/is-it-possible-to-insert-a-row-at-an-arbitrary-position-in-a-dataframe-using-pan
+        # line = pd.DataFrame({"group": 30.0, "variable": 1.3, "value": 1}, index=[i])
+        # df2 = pd.concat([df.iloc[:i], line, df.iloc[i:]]).reset_index(drop=True)
+
+
+        # its recursively taking the new values and using them for the calculations above, 
+        # to get around this, ill store it all in an array and then do this after im out of this loop etc. in a new loop.
+        # df.loc[i] = df['group'][i],newDate,round(middleValue,1)
+        # df = df.sort_index().reset_index(drop=True)
+
+        # based on https://stackoverflow.com/a/63736275
+        newRows.append([df['group'][i],newDate,round(middleValue,1)])
+
+
+        # df.loc[1.5] = 'test'
+        # print(df.loc([1]))
+print(df)
+print(len(newRows))
+for i in df.index:
+    # if i < len(newRows):
+    # if i%2==0:
+    df.loc[i+0.5] = newRows[15]
+        
+df = df.sort_index().reset_index(drop=True)
+print(df)
+        # if i+0.5 < len(df['value'])-1.5:
+        #     df.loc[i+0.5] = [newDate, df['group'][i], round(middleValue,1)]
+        # else:
+        #     df.loc[-1] = [newDate, df['group'][i], round(middleValue,1)]
+
+        # test1 = 80
+        # test2 = 82
+        # testMiddle = test1+((test2-test1)/2)
+        # print(testMiddle)
 
     # in between lines, so i + 0.5
     #df.loc[i+.5] = [newDate, df['group'][i], idk]
