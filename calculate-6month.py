@@ -47,26 +47,29 @@ import numpy as np
 # header 0 instead of None to delete the first row and assign names instead 
 # https://stackoverflow.com/questions/51759122/difference-between-header-none-and-header-0-in-pandas
 df = pd.read_csv("standardDateGEI.csv", sep=",", header=0, names=['group', 'variable', 'value'])
-
+df2 = df
 # to hold the new Dataframe rows to be added to the dataframe
 newRows = []
 for i in df.index:
-    # not sure why -1 is needed, without it it seems to go out of bounds on df
-    # whatever tho, only last value doesnt exist but thats fine, ill manually calculate that one
-    # TODO add to if, make sure its beneath 2023, lest i go over and start grabbing values from other countries
+    currentValue = df['value'][i]
+    currentGroup = df['group'][i]
+    orgDate = df['variable'][i]
+    orgDateYear = orgDate[-4:]
+    newDate = '1-6-' + orgDateYear
+    # there is no 2023 noooo, because of -1?
     if (i < len(df['value'])-1) and (df['group'][i]==df['group'][i+1]):
         
         # print(df['variable'][i], df['value'][i])
-        orgDate = df['variable'][i]
+        # orgDate = df['variable'][i]
         # print(orgDate)
         # slice so only the year remains, 1-1-2013 -> 2013
-        orgDateYear = orgDate[-4:]
+        # orgDateYear = orgDate[-4:]
         # print(orgDateYear)
-        newDate = '1-6-' + orgDateYear
+        # newDate = '1-6-' + orgDateYear
         # print(newDate)
 
-        currentValue = df['value'][i]
-        currentGroup = df['group'][i]
+        # currentValue = df['value'][i]
+        # currentGroup = df['group'][i]
         # print(currentValue)
 
         nextValue = df['value'][i+1]
@@ -94,19 +97,32 @@ for i in df.index:
 
         # based on https://stackoverflow.com/a/63736275
         newRows.append([df['group'][i],newDate,round(middleValue,1)])
+    # for 2023
+    else :
+        # previous since there is no next
+        previousValue = df['value'][i-1]
+        middleValue = currentValue+((previousValue-currentValue)/2)
+        print(newDate, df['group'][i], round(middleValue,1))
+
+        newRows.append([df['group'][i],newDate,round(middleValue,1)])
 
 
         # df.loc[1.5] = 'test'
         # print(df.loc([1]))
-print(df)
+# print(df)
 print(len(newRows))
-for i in df.index:
+# df2 as to not have any operations affect the loop, check if its even needed
+for i in df2.index:
     # if i < len(newRows):
     # if i%2==0:
-    df.loc[i+0.5] = newRows[15]
+        # if i < 1:
+        df.loc[i+0.5] = newRows[round(i)]
+
+    # for every other spot in df, take the top value from newRows, then delete this value. rinse and repeat until there is nothing left.
+    # df.loc[i+0.5] = 
         
 df = df.sort_index().reset_index(drop=True)
-print(df)
+print(df.to_string())
         # if i+0.5 < len(df['value'])-1.5:
         #     df.loc[i+0.5] = [newDate, df['group'][i], round(middleValue,1)]
         # else:
