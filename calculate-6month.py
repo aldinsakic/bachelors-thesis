@@ -82,7 +82,7 @@ for i in df.index:
         middleValue = currentValue+((nextValue-currentValue)/2)
         # print(round(middleValue,1))
 
-        print(newDate, df['group'][i], round(middleValue,1))
+        # print(newDate, df['group'][i], round(middleValue,1))
         # df.loc[i+0.5] = [newDate, df['group'][i], round(middleValue,1)]
 
         # https://stackoverflow.com/questions/15888648/is-it-possible-to-insert-a-row-at-an-arbitrary-position-in-a-dataframe-using-pan
@@ -102,7 +102,7 @@ for i in df.index:
         # previous since there is no next
         previousValue = df['value'][i-1]
         middleValue = currentValue+((previousValue-currentValue)/2)
-        print(newDate, df['group'][i], round(middleValue,1))
+        # print(newDate, df['group'][i], round(middleValue,1))
 
         newRows.append([df['group'][i],newDate,round(middleValue,1)])
 
@@ -110,7 +110,7 @@ for i in df.index:
         # df.loc[1.5] = 'test'
         # print(df.loc([1]))
 # print(df)
-print(len(newRows))
+# print(len(newRows))
 # df2 as to not have any operations affect the loop, check if its even needed
 for i in df2.index:
     # if i < len(newRows):
