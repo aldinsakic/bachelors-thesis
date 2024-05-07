@@ -1,26 +1,25 @@
 var i = 0;
 var filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL', 'ES', 'FR', 'HR', 'IT', 'CY', 'LV', 'LT', 'LU', 'EE'], ['FI', 'SE', 'DK']];
 function onLoad(p) {
-  // get the time for start of filtration.
-  localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime") + ', ' + Date.now())
-  //clear for filtering
-  document.getElementById('vizDiv').innerHTML = '';
-
-  // set the dimensions and margins of the graph
-  const margin = { top: 80, right: 25, bottom: 30, left: 50 },
-    width = 800 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
-
-  // append the svg object to the body of the page
-  const svg = d3.select("#vizDiv")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
   // read the data
   d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv").then(function (data) {
+    // get the time for start of filtration.
+    localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime") + ', ' + Date.now())
+    //clear for filtering
+    document.getElementById('vizDiv').innerHTML = '';
+
+    // set the dimensions and margins of the graph
+    const margin = { top: 80, right: 25, bottom: 30, left: 50 },
+      width = 800 - margin.left - margin.right,
+      height = 800 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    const svg = d3.select("#vizDiv")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // filter on p
     var groups = Array.from(new Set(data.filter(function (d) { return p.indexOf(d.group) >= 0 }).map(d => d.group)));

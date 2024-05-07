@@ -1,9 +1,9 @@
 var i = 0;
 var filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL','ES','FR','HR','IT','CY','LV','LT','LU','EE'], ['FI', 'SE', 'DK']];
 function onLoad(p) {
-    // get the time for start of filtration.
-    localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime")+', '+Date.now ())
     Plotly.d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/standardDateGEI.csv", function (allData) {
+        // get the time for start of filtration.
+        localStorage.setItem("filterStartTime", localStorage.getItem("filterStartTime") + ', ' + Date.now())
         var myPlot = document.getElementById('viz'),
             // d3 = Plotly.d3,
             layout = {
