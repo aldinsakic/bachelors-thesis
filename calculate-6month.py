@@ -49,7 +49,7 @@ import numpy as np
 df = pd.read_csv("standardDateGEI.csv", sep=",", header=0, names=['group', 'variable', 'value'])
 
 for i in df.index:
-    print(df['variable'][i], df['value'][i])
+    # print(df['variable'][i], df['value'][i])
     orgDate = df['variable'][i]
     # print(orgDate)
     # slice so only the year remains, 1-1-2013 -> 2013
@@ -59,14 +59,17 @@ for i in df.index:
     # print(newDate)
 
     currentValue = df['value'][i]
-    print(currentValue)
+    # print(currentValue)
 
     # not sure why -1 is needed, without it it seems to go out of bounds on df
     # whatever tho, only last value doesnt exist but thats fine, ill manually calculate that one
     # TODO add to if, make sure its beneath 2023, lest i go over and start grabbing values from other countries
-    if i < len(df['value'])-1:
+    if (i < len(df['value'])-1) and (df['group'][i]==df['group'][i+1]):
         nextValue = df['value'][i+1]
-        print(nextValue)
+        print(df['variable'][i])
+
+        # works well, did manual comparison with the Plotly heatmap implementation
+        print(currentValue, nextValue, df['group'][i], df['group'][i+1])
 
     # in between lines, so i + 0.5
     #df.loc[i+.5] = [newDate, df['group'][i], idk]
