@@ -1,5 +1,5 @@
 var i = 0;
-var filters = [['BE'], ['DE'], ['BE', 'DK'], ['ES', 'CZ', 'EL', 'ES', 'FR', 'HR', 'IT', 'CY', 'LV', 'LT', 'LU', 'EE'], ['FI', 'SE', 'DK']];
+var filters = [['BE'], ['FI'], ['FI', 'DK'], ['BE', 'DK'], ['BE', 'DK', 'SE', 'IT'], ['FI', 'DK', 'SE', 'IT']];
 function onLoad(p) {
   // read the data
   d3.csv("https://raw.githubusercontent.com/aldinsakic/bachelors-thesis/main/expandedGEIYearsAndMonths.csv").then(function (data) {
