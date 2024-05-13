@@ -33,7 +33,7 @@ function onLoad(p) {
                         window.requestAnimationFrame(function () {
                             window.requestAnimationFrame(function () {
                                 localStorage.setItem("filterEndTime", localStorage.getItem("filterEndTime") + ', ' + Date.now())
-                                if (i < 5) {
+                                if (i < filters.length()) {
                                     onLoad(filters[i])
                                 }
                                 else {
