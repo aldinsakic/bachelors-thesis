@@ -13,10 +13,10 @@ def mean_confidence_interval(data, confidence=0.95):
 
 
 # Read your data from file
-plotly = input("plotly: ")
+plotly = "../plotly/diffs/org/plotly_org_timeDiff.txt"
 plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-d3_data = input("d3: ")
+d3_data = "../d3/diffs/org/d3_org_timeDiff.txt"
 d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
 print("CI plotly delta: ", mean_confidence_interval(plotly_df['delta']))
@@ -70,5 +70,5 @@ plt.yticks(range(0, 700, 50))
 plt.xticks(range(2), ['Plotly', 'D3'])
 plt.title('Load-time Delta Means Comparison')
 plt.grid(False)
-# plt.savefig('../Graphs/loadTimeDelta.png')
-plt.show()
+plt.savefig('../Graphs/loadTimeDelta.png')
+# plt.show()
