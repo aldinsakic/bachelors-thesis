@@ -1,8 +1,8 @@
 import pandas as pd
 
-start = "D3initialTime.txt"
+start = "../d3/filterStartTimeD3.txt"
 start_df = pd.read_csv(start, header=None, names=['epoch'])
-end = "D3endTime.txt"
+end = "../d3/filterEndTimeD3.txt"
 end_df = pd.read_csv(end, header=None, names=['epoch'])
 
 delta = end_df['epoch'] - start_df['epoch']
