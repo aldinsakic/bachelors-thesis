@@ -68,7 +68,7 @@ plt.bar(barsOrder, barsData, color=colors, edgecolor='black', width=barWidth,
 plt.ylabel('Load delta in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(2), ['Plotly', 'D3'])
-plt.title('Load-time Delta Means Comparison on original GEI')
+plt.title('Load-time Delta Means Comparison on Original GEI')
 plt.grid(False)
 plt.savefig('../Graphs/loadTimeDeltaOrg.png')
 # plt.show()
