@@ -22,10 +22,10 @@ def anova(*data):  # * indicates, 0, 1 , 2 .. arguments
 
 def exampleAnova():
     # Read your data from file
-    plotly = "plotlyLoadDelta.txt"
+    plotly = "../plotly/diffs/exp/plotly_exp_filterDiff.txt"
     plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-    d3_data = "D3LoadDelta.txt"
+    d3_data = "../d3/diffs/exp/d3_exp_filterDiff.txt"
     d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
     # plotlyFilter1 = plotly_df.iloc[0::5]
@@ -43,11 +43,11 @@ def exampleAnova():
     #     print("The means are different")
     # else:
     #     print("No differences in means")
-    for i in range(5):
+    for i in range(6):
         print(i)
-        plotly_df.iloc[i::5]
-        d3_df.iloc[i::5]
-        if (anova(plotly_df.iloc[i::5]['delta'], d3_df.iloc[i::5]['delta'])):
+        plotly_df.iloc[i::6]
+        d3_df.iloc[i::6]
+        if (anova(plotly_df.iloc[i::6]['delta'], d3_df.iloc[i::6]['delta'])):
             print("The means are different")
         else:
             print("No differences in means")

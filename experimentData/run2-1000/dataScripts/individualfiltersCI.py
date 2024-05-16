@@ -13,48 +13,52 @@ def mean_confidence_interval(data, confidence=0.95):
 
 
 # Read your data from file
-plotly = "PlotlyFilterDelta.txt"
+plotly = "../plotly/diffs/exp/plotly_exp_filterDiff.txt"
 plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-d3_data = "D3FilterDelta.txt"
+d3_data = "../d3/diffs/exp/d3_exp_filterDiff.txt"
 d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
-# since the experiment had a series of 5 standardized filtrations, it was deemed best to compare each filtration to its respective counterpart.
-plotlyFilter1 = plotly_df.iloc[0::5]
-plotlyFilter2 = plotly_df.iloc[1::5]
-plotlyFilter3 = plotly_df.iloc[2::5]
-plotlyFilter4 = plotly_df.iloc[3::5]
-plotlyFilter5 = plotly_df.iloc[4::5]
-D3Filter1 = d3_df.iloc[0::5]
-D3Filter2 = d3_df.iloc[1::5]
-D3Filter3 = d3_df.iloc[2::5]
-D3Filter4 = d3_df.iloc[3::5]
-D3Filter5 = d3_df.iloc[4::5]
+# since the experiment had a series of 6 standardized filtrations, it was deemed best to compare each filtration to its respective counterpart.
+plotlyFilter1 = plotly_df.iloc[0::6]
+plotlyFilter2 = plotly_df.iloc[1::6]
+plotlyFilter3 = plotly_df.iloc[2::6]
+plotlyFilter4 = plotly_df.iloc[3::6]
+plotlyFilter5 = plotly_df.iloc[4::6]
+plotlyFilter6 = plotly_df.iloc[5::6]
+D3Filter1 = d3_df.iloc[0::6]
+D3Filter2 = d3_df.iloc[1::6]
+D3Filter3 = d3_df.iloc[2::6]
+D3Filter4 = d3_df.iloc[3::6]
+D3Filter5 = d3_df.iloc[4::6]
+D3Filter6 = d3_df.iloc[5::6]
 
-print(plotlyFilter1,plotlyFilter2,plotlyFilter3,plotlyFilter4,plotlyFilter5)
-print(D3Filter1,D3Filter2,D3Filter3,D3Filter4,D3Filter5)
+print(plotlyFilter1,plotlyFilter2,plotlyFilter3,plotlyFilter4,plotlyFilter5,plotlyFilter6)
+print(D3Filter1,D3Filter2,D3Filter3,D3Filter4,D3Filter5,D3Filter6)
 
-print("CI plotly filter 1: ", mean_confidence_interval(plotlyFilter1['delta']))
-print("CI plotly filter 2: ", mean_confidence_interval(plotlyFilter2['delta']))
-print("CI plotly filter 3: ", mean_confidence_interval(plotlyFilter3['delta']))
-print("CI plotly filter 4: ", mean_confidence_interval(plotlyFilter4['delta']))
-print("CI plotly filter 5: ", mean_confidence_interval(plotlyFilter5['delta']))
-print("CI D3 filter 1: ", mean_confidence_interval(D3Filter1['delta']))
-print("CI D3 filter 2: ", mean_confidence_interval(D3Filter2['delta']))
-print("CI D3 filter 3: ", mean_confidence_interval(D3Filter3['delta']))
-print("CI D3 filter 4: ", mean_confidence_interval(D3Filter4['delta']))
-print("CI D3 filter 5: ", mean_confidence_interval(D3Filter5['delta']))
+# print("CI plotly filter 1: ", mean_confidence_interval(plotlyFilter1['delta']))
+# print("CI plotly filter 2: ", mean_confidence_interval(plotlyFilter2['delta']))
+# print("CI plotly filter 3: ", mean_confidence_interval(plotlyFilter3['delta']))
+# print("CI plotly filter 4: ", mean_confidence_interval(plotlyFilter4['delta']))
+# print("CI plotly filter 5: ", mean_confidence_interval(plotlyFilter5['delta']))
+# print("CI D3 filter 1: ", mean_confidence_interval(D3Filter1['delta']))
+# print("CI D3 filter 2: ", mean_confidence_interval(D3Filter2['delta']))
+# print("CI D3 filter 3: ", mean_confidence_interval(D3Filter3['delta']))
+# print("CI D3 filter 4: ", mean_confidence_interval(D3Filter4['delta']))
+# print("CI D3 filter 5: ", mean_confidence_interval(D3Filter5['delta']))
 
 plotlyFilter1_CI = mean_confidence_interval(plotlyFilter1['delta'])
 plotlyFilter2_CI = mean_confidence_interval(plotlyFilter2['delta'])
 plotlyFilter3_CI = mean_confidence_interval(plotlyFilter3['delta'])
 plotlyFilter4_CI = mean_confidence_interval(plotlyFilter4['delta'])
 plotlyFilter5_CI = mean_confidence_interval(plotlyFilter5['delta'])
+plotlyFilter6_CI = mean_confidence_interval(plotlyFilter6['delta'])
 D3Filter1_CI = mean_confidence_interval(D3Filter1['delta'])
 D3Filter2_CI = mean_confidence_interval(D3Filter2['delta'])
 D3Filter3_CI = mean_confidence_interval(D3Filter3['delta'])
 D3Filter4_CI = mean_confidence_interval(D3Filter4['delta'])
 D3Filter5_CI = mean_confidence_interval(D3Filter5['delta'])
+D3Filter6_CI = mean_confidence_interval(D3Filter6['delta'])
 
 
 # CI_delta = mean_confidence_interval(plotly_df['delta'])
@@ -74,20 +78,22 @@ PlotlyBarsData = [plotlyFilter1['delta'].mean(),
             plotlyFilter2['delta'].mean(), 
             plotlyFilter3['delta'].mean(),
             plotlyFilter4['delta'].mean(),
-            plotlyFilter5['delta'].mean()
+            plotlyFilter5['delta'].mean(),
+            plotlyFilter6['delta'].mean()
             ]
 D3BarsData = [D3Filter1['delta'].mean(), 
             D3Filter2['delta'].mean(), 
             D3Filter3['delta'].mean(),
             D3Filter4['delta'].mean(),
-            D3Filter5['delta'].mean()
+            D3Filter5['delta'].mean(),
+            D3Filter6['delta'].mean()
             ]
 # print(barsData)
 
 # The x-position order of bars
 # barsOrder = range(len(df.columns))
 # barsOrder = range(10)
-barsOrder = np.arange(5)
+barsOrder = np.arange(6)
 
 # Std Bars Interval
 # barsInterval = df.std()
@@ -108,13 +114,15 @@ plotly_df_CI = pd.DataFrame(list(zip(plotlyFilter1_CI,
                               plotlyFilter3_CI,
                               plotlyFilter4_CI,
                               plotlyFilter5_CI,
-                              )), columns=['plotlyfilter1','plotlyfilter2','plotlyfilter3','plotlyfilter4','plotlyfilter5'])
+                              plotlyFilter6_CI,
+                              )), columns=['plotlyfilter1','plotlyfilter2','plotlyfilter3','plotlyfilter4','plotlyfilter5','plotlyfilter6'])
 D3_df_CI = pd.DataFrame(list(zip(D3Filter1_CI, 
                               D3Filter2_CI,
                               D3Filter3_CI,
                               D3Filter4_CI,
                               D3Filter5_CI,
-                              )), columns=['D3filter1','D3filter2','D3filter3','D3filter4','D3filter5'])
+                              D3Filter6_CI,
+                              )), columns=['D3filter1','D3filter2','D3filter3','D3filter4','D3filter5','D3filter6'])
 
 # barsInterval = df_CI.iloc[1]
 PlotlybarsInterval = plotly_df_CI.iloc[1]
@@ -149,13 +157,15 @@ plt.bar(barsOrder+0.1, D3BarsData, color="purple", edgecolor='black', width=barW
 
 # Put a tick on the x-axis undex each bar and label it with column name
 # plt.xticks(range(len(df.columns)), df.columns)
+# [['BE'], ['FI'], ['FI', 'DK'], ['BE', 'DK'], ['BE', 'DK', 'SE', 'IT'], ['FI', 'DK', 'SE', 'IT']]
+# 'BE, FI, FI & DK, BE & DK, BE DK SE & IT, FI DK SE & IT']
 
 plt.ylabel('Load time delta in ms')
 plt.yticks(range(0, 700, 50))
-plt.xticks(range(5), ['BE', 'DE','BE & DK', 'ES, CZ, EL, ES, FR, HR, IT, CY, LV, LT, LU & EE', 'FI, SE & DK'])
-plt.title('Individual Filters Time Delta Means Comparison')
+plt.xticks(range(6), ['BE','FI','FI & DK','BE & DK','BE DK SE & IT','FI DK SE & IT'])
+plt.title('Individual Filters Time Delta Means Comparison for expanded GEI data')
 plt.legend(["Plotly", "D3"]) 
 plt.grid(False)
 # bbox tight removes white margin on the image
-plt.savefig('../Graphs/IndividualFilterLoadTimeDelta.png', bbox_inches='tight')
+plt.savefig('../Graphs/IndividualFilterLoadTimeDeltaExp.png', bbox_inches='tight')
 # plt.show()

@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read your data from file
-plotly = "PlotlyFilterDelta.txt"
-d3 = "D3FilterDelta.txt"
+plotly = "../plotly/diffs/org/plotly_org_filterDiff.txt"
+d3 = "../d3/diffs/org/d3_org_filterDiff.txt"
 plDf = pd.read_csv(plotly, header=None, names=['epoch'])
 d3Df = pd.read_csv(d3, header=None, names=['epoch'])
 # range from 0 to the length of the data, aka, amount of runs.
@@ -11,7 +11,7 @@ d3Df = pd.read_csv(d3, header=None, names=['epoch'])
 # y = df['Time'].tolist()  # because the following plot takes list of data
 # searchWordXticks = df['SearchWord'].tolist()
 
-x = range(0, 500)
+x = range(0, 6000)
 PlY = plDf['epoch'].tolist()
 d3Y = d3Df['epoch'].tolist()
 
@@ -27,20 +27,20 @@ plt.plot(x, PlY, 'orange')
 plt.plot(x, d3Y, 'purple')
 
 plt.ylim(ymin=0)
-plt.xlim(xmin=0, xmax=499)
+plt.xlim(xmin=0, xmax=5999)
 
 
-plt.xticks(range(0,500,50))
+plt.xticks(range(0,6000,200))
 # range from 0 to the maximum value of y, with ticks of 50.
 plt.yticks(range(0, max(PlY), 50))
 
 plt.xlabel('Run')
 plt.ylabel('Load time in ms')
 # plt.title('load-time for ' + str(len(df)) + ' runs')
-plt.title('Load time mean time in ms across all 5 filtrations')
+plt.title('Load time mean time in ms across all 5 filtrations for the orgiginal GEI data')
 plt.grid(False)
 plt.legend(['Plotly', 'D3'])
-plt.savefig('../Graphs/allFilterMean.png', bbox_inches='tight')
+plt.savefig('../Graphs/allFilterMeanOrg.png', bbox_inches='tight')
 plt.show()
 
 # for i in range(5):

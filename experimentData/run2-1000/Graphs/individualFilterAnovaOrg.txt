@@ -1,0 +1,18 @@
+0
+ANOVA Statistic 1939.086877005892 and p-value 1.3189204894773428e-296
+The means are different
+1
+ANOVA Statistic 20738.600384592897 and p-value 0.0
+The means are different
+2
+ANOVA Statistic 5943.602402716882 and p-value 0.0
+The means are different
+3
+ANOVA Statistic 1115.6716858261848 and p-value 9.759149262064857e-195
+The means are different
+4
+ANOVA Statistic 5906.633348922921 and p-value 0.0
+The means are different
+5
+ANOVA Statistic 2787.311301551192 and p-value 0.0
+The means are different

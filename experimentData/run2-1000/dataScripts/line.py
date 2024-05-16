@@ -21,23 +21,23 @@ print(d3Df['epoch'].mean())
 print(d3Df['epoch'].std())
 
 # set the size of the graph, since the x ticks would be squished otherwise
-# plt.figure(figsize=(18, 6), dpi=80)
+plt.figure(figsize=(18, 6), dpi=80)
 
 plt.plot(x, PlY, 'orange')
 plt.plot(x, d3Y, 'purple')
 
 plt.ylim(ymin=0)
-plt.xlim(xmin=0, xmax=99)
+plt.xlim(xmin=0, xmax=999)
 
 
-plt.xticks(range(0,100,5))
+plt.xticks(range(0,1000,50))
 # range from 0 to the maximum value of y, with ticks of 50.
 plt.yticks(range(0, max(PlY), 50))
 
 plt.xlabel('Run')
 plt.ylabel('Load time in ms')
 # plt.title('load-time for ' + str(len(df)) + ' runs')
-plt.title('Load time mean time')
+plt.title('Load time mean time for Expanded GEI data')
 plt.grid(False)
 plt.legend(['Plotly', 'D3'])
 plt.savefig('../Graphs/loadTimeDeltaLineExp.png', bbox_inches='tight')
