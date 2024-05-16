@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read your data from file
-plotly = "plotlyLoadDelta.txt"
-d3 = "D3LoadDelta.txt"
+plotly = "../plotly/diffs/exp/plotly_exp_timeDiff.txt"
+d3 = "../d3/diffs/exp/d3_exp_timeDiff.txt"
 plDf = pd.read_csv(plotly, header=None, names=['epoch'])
 d3Df = pd.read_csv(d3, header=None, names=['epoch'])
 # range from 0 to the length of the data, aka, amount of runs.
@@ -40,5 +40,5 @@ plt.ylabel('Load time in ms')
 plt.title('Load time mean time')
 plt.grid(False)
 plt.legend(['Plotly', 'D3'])
-plt.savefig('../Graphs/loadTimeDeltaLine.png', bbox_inches='tight')
+plt.savefig('../Graphs/loadTimeDeltaLineExp.png', bbox_inches='tight')
 plt.show()

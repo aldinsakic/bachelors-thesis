@@ -1,0 +1,2 @@
+ANOVA Statistic 20060.557389404607 and p-value 0.0
+The means are different

@@ -22,11 +22,13 @@ def anova(*data):  # * indicates, 0, 1 , 2 .. arguments
 
 def exampleAnova():
     # Read your data from file
-    plotly = "plotlyLoadDelta.txt"
+    plotly = "../plotly/diffs/exp/plotly_exp_timeDiff.txt"
     plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-    d3_data = "D3LoadDelta.txt"
+    d3_data = "../d3/diffs/exp/d3_exp_timeDiff.txt"
     d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
+    # print(d3_df, plotly_df)
+    
     # Run Anova on data groups
     if (anova(plotly_df['delta'], d3_df['delta'])):
         print("The means are different")
