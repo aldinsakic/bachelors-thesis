@@ -1,0 +1,3 @@
+removed line 2617 from both orginial filter datas. it was a spike in plotly allFilterMeanOrg.png
+
+removed line 4561 from both expanded datas. it was a spike in plotly allFilterMeanExp.png
