@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read your data from file
-plotly = "../plotly/diffs/org/plotly_org_filterDiff.txt"
-d3 = "../d3/diffs/org/d3_org_filterDiff.txt"
+plotly = "../plotly/diffs/exp/plotly_exp_filterDiff.txt"
+d3 = "../d3/diffs/exp/d3_exp_filterDiff.txt"
 plDf = pd.read_csv(plotly, header=None, names=['epoch'])
 d3Df = pd.read_csv(d3, header=None, names=['epoch'])
 # range from 0 to the length of the data, aka, amount of runs.
@@ -37,10 +37,10 @@ plt.yticks(range(0, max(PlY), 50))
 plt.xlabel('Run')
 plt.ylabel('Load time in ms')
 # plt.title('load-time for ' + str(len(df)) + ' runs')
-plt.title('Load time mean time in ms across all 5 filtrations for the orgiginal GEI data')
+plt.title('Load time mean time in ms across all 6 filtrations for the expanded GEI data')
 plt.grid(False)
 plt.legend(['Plotly', 'D3'])
-plt.savefig('../Graphs/allFilterMeanOrg.png', bbox_inches='tight')
+plt.savefig('../Graphs/allFilterMeanExp.png', bbox_inches='tight')
 plt.show()
 
 # for i in range(5):
