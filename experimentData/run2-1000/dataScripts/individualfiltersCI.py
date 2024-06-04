@@ -160,10 +160,10 @@ plt.bar(barsOrder+0.1, D3BarsData, color="purple", edgecolor='black', width=barW
 # [['BE'], ['FI'], ['FI', 'DK'], ['BE', 'DK'], ['BE', 'DK', 'SE', 'IT'], ['FI', 'DK', 'SE', 'IT']]
 # 'BE, FI, FI & DK, BE & DK, BE DK SE & IT, FI DK SE & IT']
 
-plt.ylabel('Load time delta in ms')
+plt.ylabel('Load time in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(6), ['BE','FI','FI & DK','BE & DK','BE DK SE & IT','FI DK SE & IT'])
-plt.title('Individual Filters Time Delta Means Comparison for expanded GEI data')
+plt.title('Individual Filters Time Means Comparison for Expanded GEI data')
 plt.legend(["Plotly", "D3"]) 
 plt.grid(False)
 # bbox tight removes white margin on the image
