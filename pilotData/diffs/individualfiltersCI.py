@@ -150,10 +150,10 @@ plt.bar(barsOrder+0.1, D3BarsData, color="purple", edgecolor='black', width=barW
 # Put a tick on the x-axis undex each bar and label it with column name
 # plt.xticks(range(len(df.columns)), df.columns)
 
-plt.ylabel('Load time delta in ms')
+plt.ylabel('Load time in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(5), ['BE', 'DE','BE & DK', 'ES, CZ, EL, ES, FR, HR, IT, CY, LV, LT, LU & EE', 'FI, SE & DK'])
-plt.title('Individual Filters Time Delta Means Comparison')
+plt.title('Individual Filters Time Means Comparison')
 plt.legend(["Plotly", "D3"]) 
 plt.grid(False)
 # bbox tight removes white margin on the image
