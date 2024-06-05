@@ -13,10 +13,10 @@ def mean_confidence_interval(data, confidence=0.95):
 
 
 # Read your data from file
-plotly = "../CulledData/plotly/exp/plotly_exp_filterDiff_culled.txt"
+plotly = "../plotly/diffs/org/plotly_org_filterDiff.txt"
 plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-d3_data = "../CulledData/d3/exp/d3_exp_filterDiff_culled.txt"
+d3_data = "../d3/diffs/org/d3_org_filterDiff.txt"
 d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
 print("CI plotly delta: ", mean_confidence_interval(plotly_df['delta']))
@@ -65,10 +65,10 @@ plt.bar(barsOrder, barsData, color=colors, edgecolor='black', width=barWidth,
 # Put a tick on the x-axis undex each bar and label it with column name
 # plt.xticks(range(len(df.columns)), df.columns)
 
-plt.ylabel('Load time delta in ms')
+plt.ylabel('Load time in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(2), ['Plotly', 'D3'])
-plt.title('Filter Time Delta Means Comparison for expanded GEI data')
+plt.title('Filter Time Means Comparison for original GEI data')
 plt.grid(False)
-plt.savefig('../CulledData/graphs/allFilterMeanCIexp_culled.png')
+plt.savefig('../Graphs/filterLoadTimeDeltaOrg.png')
 # plt.show()
