@@ -13,10 +13,10 @@ def mean_confidence_interval(data, confidence=0.95):
 
 
 # Read your data from file
-plotly = "../plotly/diffs/org/plotly_org_timeDiff.txt"
+plotly = "../plotly/diffs/exp/plotly_exp_timeDiff.txt"
 plotly_df = pd.read_csv(plotly, header=None, names=['delta'])
 
-d3_data = "../d3/diffs/org/d3_org_timeDiff.txt"
+d3_data = "../d3/diffs/exp/d3_exp_timeDiff.txt"
 d3_df = pd.read_csv(d3_data, header=None, names=['delta'])
 
 print("CI plotly delta: ", mean_confidence_interval(plotly_df['delta']))
@@ -65,10 +65,10 @@ plt.bar(barsOrder, barsData, color=colors, edgecolor='black', width=barWidth,
 # Put a tick on the x-axis undex each bar and label it with column name
 # plt.xticks(range(len(df.columns)), df.columns)
 
-plt.ylabel('Load delta in ms')
+plt.ylabel('Load time in ms')
 plt.yticks(range(0, 700, 50))
 plt.xticks(range(2), ['Plotly', 'D3'])
-plt.title('Load-time Delta Means Comparison on Original GEI')
+plt.title('Load-time Means Comparison on expanded GEI')
 plt.grid(False)
-plt.savefig('../Graphs/loadTimeDeltaOrg.png')
+plt.savefig('../Graphs/loadTimeDeltaExp.png')
 # plt.show()
